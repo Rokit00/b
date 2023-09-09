@@ -13,6 +13,18 @@ const CommentSection = ({
   const [allComments, setAllComments] = useState(initialComments || []);
   const endOfCommentsRef = useRef(null);
 
+  useEffect(() => {
+    if (initialComments) {
+      setAllComments(initialComments);
+    }
+  }, [initialComments]);
+
+  useEffect(() => {
+    if (endOfCommentsRef.current) {
+      endOfCommentsRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, [allComments]);
+
   const handleCommentSubmit = async (newCommentData) => {
     try {
       const response = await axios.post(`/comment/${postId}`, newCommentData, {
@@ -23,18 +35,40 @@ const CommentSection = ({
       setAllComments((prevComments) => [...prevComments, response.data]);
       onNewComment();
     } catch (error) {
-      console.error("Error posting the comment", error);
+      console.error("Error", error);
       alert("댓글 작성에 실패했습니다.");
     }
   };
 
-  useEffect(() => {
-    setAllComments(initialComments);
+  const handleLike = async (commentId) => {
+    try {
+        const response = await axios.post(`/comment/${commentId}/like`, {}, {
+            headers: {
+                Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+            },
+        });
+        
+      
+        console.log(response.data);
 
-    if (endOfCommentsRef.current) {
-      endOfCommentsRef.current.scrollIntoView({ behavior: "smooth" });
+        if (response.data) {
+            const updatedLikes = response.data.likes;
+            setAllComments((prevComments) => 
+                prevComments.map((comment) =>
+                    comment.id === commentId
+                        ? { ...comment, likeCount: updatedLikes }
+                        : comment
+                )
+            );
+            console.log(updatedLikes);
+        }
+        console.log(response.data);
+    } catch (error) {
+        console.error("Error", error);
+        alert("댓글 좋아요 변경에 실패했습니다.");
     }
-  }, [initialComments]);
+};
+
   return (
     <div>
       <div className={styles.commentsContainer}>
@@ -57,6 +91,7 @@ const CommentSection = ({
               likes={comment.likeCount}
               date={comment.createdAt}
               opinion={comment.selectOption}
+              onLike={() => handleLike(comment.id)}
             />
           </div>
         ))}
