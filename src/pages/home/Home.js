@@ -5,6 +5,7 @@ import SectionTwo from "./sections/SectionTwo";
 import SectionThree from "./sections/SectionThree";
 import axios from "axios";
 import { calculatePercentage } from "../../utils/calculatePercent";
+import NavBar from "../../components/nav_bar/NavBar";
 
 const Home = () => {
   const sectionTwoRef = useRef(null);
@@ -51,6 +52,7 @@ const Home = () => {
 
   return (
     <div>
+      <NavBar />
       <SectionOne handleScrollToSectionTwo={handleScrollToSectionTwo} />
       <div ref={sectionTwoRef}>
         <SectionTwo setSharedData={setSharedData} />

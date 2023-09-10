@@ -74,9 +74,7 @@ const Result = ({
             return (
               <div
                 key={`${name1}-${name2}`}
-                className={`${styles.compatibilityResult} ${styles.fadeInOut} ${
-                  index === selectedUserIndex ? styles.selected : ""
-                }`}
+                className={`${styles.compatibilityResult} ${styles.fadeInOut}`}
               >
                 <p>
                   {name1}님({mbti1})과 {name2}님({mbti2}) 의 궁합 결과: {result}
@@ -84,7 +82,6 @@ const Result = ({
               </div>
             );
           }
-
           return null;
         })}
       </div>

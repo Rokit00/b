@@ -1,5 +1,3 @@
-// compatibility.js
-
 const mbtiCompatibility = {
   I: "I",
   E: "E",
@@ -22,25 +20,103 @@ const exceptionalRelations = {
   ENTP: ["INFJ", "INTJ"],
   ISFP: ["ENFJ", "ESFJ", "ESTJ"],
   ESFP: ["ISFJ", "ISTJ"],
+  ISTP: ["ESFJ", "ESTJ"],
   ESTP: ["ISFJ"],
   ISFJ: ["ESFP", "ESTP"],
-  ESFJ: ["ESFP"],
+  ESFJ: ["ISFP", "ISTP"],
+  ISTJ: ["ESFP"],
   ESTJ: ["INTP", "ISFP", "ISTP"],
 };
-const allIn = (chars, str) => {
-  for (let char of chars) {
-    if (!str.includes(char)) return false;
-  }
-  return true;
-};
-export const checkCompatibility = (mbti1, mbti2) => {
-  // 두 MBTI 유형이 같은 경우 '좋음' 반환
-  if (mbti1 === mbti2) {
-    if (allIn(["S", "P"], mbti1)) return "조금 안맞는";
-    return "좋음";
-  }
 
-  // 예외 관계 체크
+const relations = {
+  INFP: {
+    1: ["INFP", "ENFP", "INFJ", "INTJ", "INTP", "ENTP"],
+    4: ["ISFP", "ESFP", "ISTP", "ESTP", "ISFJ", "ESFJ", "ISTJ", "ESTJ"],
+  },
+  ENFP: {
+    1: ["INFP", "ENFP", "ENFJ", "ENTJ", "INTP", "ENTP"],
+    4: ["ISFP", "ESFP", "ISTP", "ESTP", "ISFJ", "ESFJ", "ISTJ", "ESTJ"],
+  },
+  INFJ: {
+    1: ["INFP", "INFJ", "ENFJ", "INTJ", "ENTJ", "INTP", "ENTP"],
+    4: ["ISFP", "ESFP", "ISTP", "ESTP", "ISFJ", "ESFJ", "ISTJ", "ESTJ"],
+  },
+  ENFJ: {
+    1: ["ENFP", "INFJ", "ENFJ", "INTJ", "ENTJ", "INTP", "ENTP"],
+    4: ["ESFP", "ISTP", "ESTP", "ISFJ", "ESFJ", "ISTJ", "ESTJ"],
+  },
+  INTJ: {
+    1: ["INFP", "INFJ", "ENFJ", "INTJ", "ENTJ", "INTP"],
+    2: ["ISFJ", "ESFJ", "ISTJ", "ESTJ"],
+    3: ["ISFP", "ESFP", "ISTP", "ESTP"],
+  },
+  ENTJ: {
+    1: ["ENFP", "INFJ", "ENFJ", "INTJ", "ENTJ", "ENTP"],
+    2: ["ISFP", "ESFP", "ISTP", "ESTP"],
+    3: ["ISFJ", "ESFJ", "ISTJ", "ESTJ"],
+  },
+  INTP: {
+    1: ["INFP", "ENFP", "INFJ", "ENFJ", "INTJ", "INTP", "ENTP"],
+    2: ["ISFP", "ESFP", "ISTP", "ESTP"],
+    3: ["ISFJ", "ESFJ", "ISTJ"],
+  },
+  ENTP: {
+    1: ["ENTP", "ENFP", "ENFJ", "ENTJ", "INTP", "ENTP"],
+    2: ["ISFP", "ESFP", "ISTP", "ESTP"],
+    3: ["ISFJ", "ESFJ", "ISTJ", "ESTJ"],
+  },
+  ISFP: {
+    1: ["ISFJ", "ISTJ"],
+    2: ["INTJ", "ENTJ", "INTP", "ENTP", "ISFJ", "ISTJ"],
+    3: ["ISFP", "ESFP", "ESTP", "ISTP"],
+    4: ["INFP", "ENFP", "INFJ"],
+  },
+  ESFP: {
+    1: ["ESFJ", "ESTJ"],
+    2: ["INTJ", "ENTJ", "INTP", "ENTP", "ESFJ", "ESTJ"],
+    3: ["ISFP", "ESFP", "ISTP", "ESTP"],
+  },
+  ISTP: {
+    1: ["ISFJ", "ISTJ"],
+    2: ["INTJ", "ENTJ", "INTP", "ENTP", "ISFJ", "ISTJ"],
+    3: ["ISFP", "ESFP", "ESTP", "ISTP"],
+    4: ["INFP", "ENFP", "INFJ", "ENFJ"],
+  },
+  ESTP: {
+    1: ["ESFJ", "ESTJ"],
+    2: ["INTJ", "ENTJ", "INTP", "ENTP", "ISTJ", "ESFJ", "ESTJ"],
+    3: ["ISFP", "ESFP", "ISTP", "ESTP"],
+    4: ["INFP", "ENFP", "INFJ", "ENFJ"],
+  },
+  ISFJ: {
+    1: ["ISFJ", "ESFJ", "ISTJ", "ESTJ"],
+    2: ["ENTJ", "ISFP", "ISTP"],
+    3: ["INTJ", "INTP", "ENTP"],
+    4: ["INFP", "ENFP", "INFJ", "ENFJ"],
+  },
+  ESFJ: {
+    1: ["ISFJ", "ESFJ", "ISTJ", "ESTJ"],
+    2: ["ENTJ", "ESFP", "ESTP"],
+    3: ["INTJ", "INTP", "ENTP"],
+    4: ["INFP", "ENFP", "INFJ", "ENFJ"],
+  },
+  ISTJ: {
+    1: ["ISFJ", "ESFJ", "ISTJ", "ESTJ"],
+    2: ["ENTJ", "ISFP", "ISTP", "ESTP"],
+    3: ["INTJ", "INTP", "ENTP"],
+    4: ["INFP", "ENFP", "INFJ", "ENFJ"],
+  },
+  ESTJ: {
+    1: ["ISFJ", "ESFJ", "ISTJ", "ESTJ"],
+    2: ["ENTJ", "ESFP", "ESTP"],
+    3: ["INTJ", "ENTP"],
+    4: ["INFP", "ENFP", "INFJ", "ENFJ"],
+  },
+};
+
+export const checkCompatibility = (mbti1, mbti2) => {
+  if (mbti1 === mbti2) return "좋음";
+
   if (
     exceptionalRelations[mbti1] &&
     exceptionalRelations[mbti1].includes(mbti2)
@@ -52,39 +128,26 @@ export const checkCompatibility = (mbti1, mbti2) => {
   )
     return "매우 좋음";
 
-  // ENTJ의 특별한 관계
-  if (mbti1 === "ENTJ" && allIn(["S", "F", "T"], mbti2)) return "그럭저럭";
-  if (mbti2 === "ENTJ" && allIn(["S", "F", "T"], mbti1)) return "그럭저럭";
-
-  // XNFX와 XSFX, XSTX의 관계
-  if (allIn(["NF"], mbti1) && (allIn(["SF"], mbti2) || allIn(["ST"], mbti2)))
-    return "매우 나쁨";
-
-  // NF와 NT의 관계
-  if (allIn(["NF"], mbti1) && allIn(["NT"], mbti2)) return "좋음";
-
-  // XSXP와 XNTX의 관계
-  if (allIn(["S", "P"], mbti1) && allIn(["N", "T"], mbti2)) return "그럭저럭";
-
-  // XSXP와 XSXP의 관계
-  if (allIn(["S", "P"], mbti1) && allIn(["S", "P"], mbti2))
-    return "조금 안맞는";
-
-  // XSXP와 XSXJ의 관계
-  if (allIn(["S", "P"], mbti1) && allIn(["S", "J"], mbti2)) return "그럭저럭";
-
-  // XSXJ와 XSXJ의 관계
-  if (allIn(["S", "J"], mbti1) && allIn(["S", "J"], mbti2)) return "좋음";
+  for (let rating in relations[mbti1]) {
+    if (relations[mbti1][rating].includes(mbti2)) {
+      switch (parseInt(rating)) {
+        case 1:
+          return "좋음";
+        case 2:
+          return "반반";
+        case 3:
+          return "나쁘지않음";
+        default:
+          return "나쁨";
+      }
+    }
+  }
 
   return "정보 없음";
 };
 
-// MBTI 유형 배열을 알파벳 형태로 변환하는 함수
 export const mbtiToAlphabet = (mbti) => {
-  if (!Array.isArray(mbti)) {
-    return "";
-  }
+  if (!Array.isArray(mbti)) return "";
 
-  // MBTI 유형 배열의 인덱스를 각 알파벳으로 변환하여 연결하여 반환
   return mbti.map((index) => Object.keys(mbtiCompatibility)[index]).join("");
 };

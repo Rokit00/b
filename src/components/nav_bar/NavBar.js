@@ -8,7 +8,6 @@ const NavBar = () => {
   const { isLoggedIn, setIsLoggedIn } = useAuth();
 
   const handleLogout = () => {
-    // localStorage에서 token 삭제
     localStorage.removeItem("token");
     setIsLoggedIn(false);
   };
@@ -22,7 +21,7 @@ const NavBar = () => {
           </Link>
         </div>
         <div className={styles.navItem}>
-          <Link className={styles.navLink} to="/dibate-list/hot">
+          <Link className={styles.navLink} to="/lists">
             HOT🔥
           </Link>
         </div>
@@ -36,7 +35,12 @@ const NavBar = () => {
         {isLoggedIn ? (
           <>
             <div className={styles.navItem}>
-              <span> 환영합니다</span>
+              <Link
+                className={`${styles.navLink} ${styles.smallText}`}
+                to="/Mydiscussion"
+              >
+                마이페이지
+              </Link>
             </div>
             <div className={styles.navItem}>
               <Link
