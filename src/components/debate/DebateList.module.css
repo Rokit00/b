@@ -1,0 +1,44 @@
+.main {
+  background-color: black;
+  text-align: center;
+  min-height: 100vh;
+  padding-bottom: 20px;
+  margin-top: 5rem;
+  border: 1px red solid;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content:flex-start;
+  align-items: center;
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.body {
+  width: 70%;
+  margin: 3rem auto;
+  display: flex;
+  justify-content:left;
+  flex-wrap: wrap;
+}
+
+.section {
+  margin: 2rem;
+  width: 20rem;
+  height: 20rem;
+  background-color: black;
+  border-radius: 2rem;
+  color: white;
+  box-shadow: 0 0 1rem rgb(255, 185, 240); /* 그림자 효과 추가 */
+}
+input[type="text"] {
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  margin-right: 10px;
+}

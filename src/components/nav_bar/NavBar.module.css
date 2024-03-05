@@ -1,64 +1,57 @@
+@font-face {
+  font-family: "Ydestreet";
+  src: url("../../assets/Ydestreet_FONT/YdestreetL.ttf");
+}
+
 .navBar {
+  z-index: 999;
   background-color: black;
   padding: 1rem 3rem;
-  font-size: 18px;
   display: flex;
-  justify-content: space-between;
+  position:fixed;
   align-items: center;
-  max-width: 1200px;
-  margin: 0 auto;
+  width: 92%;
+  top: 0;
+  left: 0;
 }
 
-.logo {
-  width: 130px;
-  height: 50px;
-  margin-top: 10px;
-  margin-right: 2rem;
+
+.header {
+  font-size: 2rem;
+  font-family: "Monoton", cursive;
+  background: linear-gradient(
+    349deg,
+    rgba(192, 250, 202, 1) 15%,
+    rgba(255, 212, 0, 1) 35%,
+    rgba(233, 115, 141, 1) 55%,
+    rgba(105, 55, 161, 1) 70%
+  );
+  -webkit-background-clip: text;
+  color: transparent;
 }
 
-.navList {
-  flex-wrap: wrap;
-  list-style: none;
-  margin: 0;
-  padding: 0;
+
+.main {
   display: flex;
-  align-items: center;
+  flex-direction: row;
+  margin: 0 2rem;
+  flex-direction: row;
+  font-family: "Ydestreet";
 }
 
+.footer {
+  margin-left: auto;
+  display: flex;
+  flex-direction: row;
+  font-family: "Ydestreet";
+}
 .navItem {
   margin-right: 1rem;
-  font-size: 16px;
+  font-size: 1rem;
 }
 
-.navItem:last-child {
-  margin-right: 0;
-}
 
 .navLink {
   color: white;
   text-decoration: none;
-}
-
-.smallText {
-  font-size: 14px;
-}
-
-.navItem:first-child {
-  margin-left: auto;
-}
-@media (max-width: 768px) {
-  .navBar {
-    padding: 1rem;
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .navList {
-    width: 100%;
-    justify-content: space-between;
-  }
-
-  .navItem {
-    margin-right: 0;
-  }
 }

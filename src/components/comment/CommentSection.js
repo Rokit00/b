@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect } from "react";
 import CommentForm from "./CommentForm";
-import UserInfo from "../UserInfo";
+import UserInfo from "../../hook/UserInfo";
 import CommentText from "./CommentText";
 import styles from "./CommentSection.module.css";
 import axios from "axios";
@@ -34,7 +34,7 @@ const CommentSection = ({
     }
 
     try {
-      const response = await axios.post(`/comment/${postId}`, newCommentData, {
+      const response = await axios.post(`http://localhost:8080/comment/${postId}`, newCommentData, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -57,7 +57,7 @@ const CommentSection = ({
 
     try {
       const response = await axios.post(
-        `/comment/${commentId}/like`,
+        `http://localhost:8080/comment/${commentId}/like`,
         {},
         {
           headers: {

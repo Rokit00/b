@@ -2,17 +2,16 @@
 import React, { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import styles from "./LoginModal.module.css";
-import logo from "../../assets/logo.png";
 import kakao from "../../assets/kakao_login.png";
 import HorizonLine from "./HorizonLine";
 import useInput from "../../hook/useInput";
-import { useAuth } from "../AuthContext";
+import { useAuth } from "../../hook/AuthContext";
 import axios from "axios";
 
 function LoginModal() {
   const navigate = useNavigate();
   const location = useLocation();
-  const userId = useInput("");
+  const email = useInput("");
   const password = useInput("");
   const [errorMessage, setErrorMessage] = useState("");
   const REST_API_KEY = "9394c1ee0de2fd55a8ccc154f6cc5114";
@@ -32,20 +31,16 @@ function LoginModal() {
   const handleLogin = (e) => {
     e.preventDefault();
     axios
-      .post("/members/login", {
-        userId: userId.value,
+      .post("http://localhost:8080/signin",
+      {
+        email: email.value,
         password: password.value,
       })
       .then((response) => {
-        console.log("Login successful:", response.data);
-        sessionStorage.setItem("token", response.data);
+        let accessToken = response.headers["authorization"];
+        localStorage.setItem("token", accessToken.substring(accessToken.lastIndexOf(" ") + 1));
         setIsLoggedIn(true);
-
-        if (from.pathname !== "/signup") {
-          navigate(from.pathname);
-        } else {
-          navigate("/lists");
-        }
+        navigate('/');
       })
       .catch((error) => {
         console.error("Login error:", error);
@@ -63,7 +58,7 @@ function LoginModal() {
     <div className={styles.body}>
       <div className={styles.card}>
         <form id="form" className={styles.form} onSubmit={handleLogin}>
-          <img src={logo} alt="We-ing" className={styles.logo} />
+          <h1 className={styles.text}>WEING</h1>
           <img
             src={kakao}
             className={styles.kakao_image}
@@ -75,10 +70,10 @@ function LoginModal() {
             <div className={styles.form_control}>
               <input
                 type="text"
-                id="username"
-                placeholder="아이디"
-                value={userId.value}
-                onChange={userId.onChange}
+                id="email"
+                placeholder="Email"
+                value={email.value}
+                onChange={email.onChange}
                 required
               />
             </div>
@@ -86,13 +81,13 @@ function LoginModal() {
               <input
                 type="password"
                 id="password"
-                placeholder="비밀번호"
+                placeholder="Password"
                 value={password.value}
                 onChange={password.onChange}
                 required
               />
             </div>
-            <button className={styles.login_button}>로그인</button>
+            <button type="submit"className={styles.login_button}>로그인</button>
             <div className={styles.login_signup}>
               <div className={styles.login_signup_desc}>계정이 없으신가요?</div>
               <button

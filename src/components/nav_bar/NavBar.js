@@ -1,10 +1,11 @@
 import React from "react";
-import Logo from "../../assets/logo.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styles from "./NavBar.module.css";
-import { useAuth } from "../AuthContext";
+import { useAuth } from "../../hook/AuthContext";
 
 const NavBar = () => {
+
+  const navigate = useNavigate();
   const { isLoggedIn, setIsLoggedIn } = useAuth();
 
   const handleLogout = () => {
@@ -12,26 +13,27 @@ const NavBar = () => {
     setIsLoggedIn(false);
   };
 
+  const homeHandler= () =>{navigate('/')}
+
   return (
     <nav className={styles.navBar}>
-      <div className={styles.navList}>
-        <div>
-          <Link to="/">
-            <img className={styles.logo} src={Logo} alt="logo" />
-          </Link>
+      
+        <div className={styles.header} type="button">
+            <span type="button" className={styles.logotext} onClick={homeHandler}>Weing</span>
         </div>
+
+        <div className={styles.main}>
         <div className={styles.navItem}>
           <Link className={styles.navLink} to="/lists">
-            HOT🔥
+            토론🔥
           </Link>
         </div>
-        <div className={styles.navItem}>
-          <Link className={styles.navLink} to="/section2">
-            케미확인
-          </Link>
+        <div className={styles.navLink}><a>케미&nbsp;&nbsp;&nbsp;</a></div>
+        <div className={styles.navLink}><a>Chat</a></div>
         </div>
-      </div>
-      <div className={styles.navList}>
+        
+      
+      <div className={styles.footer}>
         {isLoggedIn ? (
           <>
             <div className={styles.navItem}>
@@ -59,15 +61,7 @@ const NavBar = () => {
                 className={`${styles.navLink} ${styles.smallText}`}
                 to="/login"
               >
-                로그인
-              </Link>
-            </div>
-            <div className={styles.navItem}>
-              <Link
-                className={`${styles.navLink} ${styles.smallText}`}
-                to="/signup"
-              >
-                회원가입
+                Login
               </Link>
             </div>
           </>

@@ -1,5 +1,5 @@
 import React from "react";
-import UserInfo from "../UserInfo";
+import UserInfo from "../../hook/UserInfo";
 import CommentText from "./CommentText";
 import styles from "./TopComments.module.css";
 

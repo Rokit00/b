@@ -1,0 +1,13 @@
+@font-face {
+  font-family: "Ydestreet";
+  src: url("../../assets/Ydestreet_FONT/YdestreetL.ttf");
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: "Ydestreet";
+  height: 100vh;
+}

@@ -1,0 +1,233 @@
+@import url("https://fonts.googleapis.com/css2?family=Monoton&display=swap");
+
+.content {
+  padding: 20px;
+  text-align: center;
+  color: #fff;
+  position: relative;
+}
+
+
+.mbti-check-heading {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  text-align: center;
+  /*background-image: url("C:\Users\eogus\Desktop\front_end_DaeHyun\who\src\assets\paper.png");*/
+  background-size: 368px 80px;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 80px;
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Titan+One&display=swap");
+
+.mbti-check-heading span {
+  font-size: 80px;
+  font-family: "Monoton", cursive;
+  vertical-align: sub;
+  font-size: 60px;
+  text-shadow: 0px 0px 2px rgba(255, 255, 255, 0.2),
+    0px 0px 15px rgba(255, 255, 255, 0.4), 0px 0px 25px rgba(255, 255, 255, 0.6);
+  font-weight: 100;
+}
+
+
+.image-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  gap: 10px;
+}
+
+.image-grid img {
+  width: 100%;
+  height: 100px;
+  object-fit: cover;
+  filter: brightness(20%);
+  cursor: pointer;
+}
+
+.image-grid img.selected {
+  filter: brightness(100%);
+  transition: filter 0.3s ease;
+}
+
+.btn,
+.result-btn {
+  position: relative;
+  font-size: 15px;
+  font-weight: bold;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  margin: 10px 10px;
+  color: white;
+  background-color: darkgoldenrod;
+  border-radius: 1rem;
+  cursor: pointer;
+  margin: 10px 10px;
+}
+
+.left-content {
+  
+  box-shadow: 0px 0px 15px #ffffff, inset 0px 0px 5px #ffffff;
+  max-height: 538.182px;
+  border-radius: 10px;
+  margin: 20px;
+  padding: 20px;
+  flex: 1;
+  background: rgba(0, 0, 0, 0.8);
+  z-index: 1;
+}
+
+
+
+.right-content {
+  
+  box-shadow: 0px 0px 15px #ffffff, inset 0px 0px 5px #ffffff;
+  border-radius: 10px;
+  margin: 20px;
+  padding: 20px;
+  flex: 1;
+  color: #fff;
+  max-height: 538.182px;
+  overflow-y: auto;
+  width: 600px;
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.right-content h3 {
+  font-size: 50px;
+}
+
+.right-content p {
+  font-size: 15px;
+  margin-bottom: 20px;
+}
+
+.right-content::-webkit-scrollbar {
+  width: 0.5em;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+}
+
+.clip {
+  transform: rotate(16deg);
+  width: 200px;
+  position: absolute;
+  top: 62px;
+  right: -41px;
+  order: 2;
+  z-index: 2;
+}
+
+.right-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.5s ease;
+  flex: 1;
+  z-index: 3;
+}
+
+.success-message {
+  margin-bottom: 20px;
+}
+.saved-data {
+  padding-right: 30px;
+}
+.data-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+.result-texts {
+  text-align: center;
+}
+.result-text {
+  width: 50px;
+  height: 100px;
+  display: inline-block;
+  font-family: "Monoton", cursive;
+  font-size: 50px;
+  cursor: pointer;
+  text-align: center;
+  line-height: 100px;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.text-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  gap: 10px;
+}
+
+.text-grid span {
+  font-family: "Monoton", cursive;
+  margin: 5px;
+  font-size: 50px;
+  cursor: pointer;
+  text-align: center;
+  line-height: 100px; /* 이미지 높이와 동일하게 설정 */
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+  justify-content: space-around;
+  color: rgba(255, 255, 255, 0.6);
+  text-shadow: 0px 0px 2px rgba(255, 255, 255, 0.2),
+    0px 0px 15px rgba(255, 255, 255, 0.4), 0px 0px 25px rgba(255, 255, 255, 0.6);
+}
+
+/* .text-grid span.selected {
+  color: #fff;
+   
+} */
+.I.selected,
+.E.selected {
+  margin: 0 5px 0;
+  font-size: 60px;
+  color: #ff80f3;
+  text-shadow: 0px 0px 5px #e9738d, 0px 0px 30px #e9738d, 0px 0px 40px #e9738d,
+    0px 0px 50px #e9738d, 0px 0px 6px #e9738d;
+}
+
+.I.selected {
+  margin: 0 0px 0;
+}
+
+.S.selected,
+.N.selected {
+  margin: 5px;
+  font-size: 60px;
+  color: #fade85;
+  text-shadow: 0px 0px 5px #ffd400, 0px 0px 30px #ffd400, 0px 0px 40px #ffd400,
+    0px 0px 50px #fff, 0px 0px 6px #ffd400;
+}
+
+.F.selected,
+.T.selected {
+  margin: 5px;
+  letter-spacing: 1px;
+  font-size: 60px;
+  color: #bae1d3;
+  text-shadow: 0px 0px 5px #83dcb7, 0px 0px 30px #83dcb7, 0px 0px 40px #83dcb7,
+    0px 0px 50px #fff, 0px 0px 6px #83dcb7;
+}
+.P.selected,
+.J.selected {
+  margin: 5px;
+  letter-spacing: 1px;
+  font-size: 60px;
+  color: #d8a8ff;
+  text-shadow: 0px 0px 5px #b065ee, 0px 0px 30px #b065ee, 0px 0px 40px #b065ee,
+    0px 0px 50px #b065ee, 0px 0px 60px #b065ee, 0px 0px 65px #b065ee,
+    0px 0px 6px #b065ee;
+}
+
+.J.selected {
+  font-size: 62px;
+  margin: 0 0px 0;
+}

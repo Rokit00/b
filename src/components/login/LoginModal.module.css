@@ -5,14 +5,7 @@
   text-align: center;
   width: 100vw;
   height: 100vh;
-  background-origin: border-box;
-  background-clip: content-box, border-box;
-}
-
-@property --rotate {
-  syntax: "<angle>";
-  initial-value: 132deg;
-  inherits: false;
+  background-color: black;
 }
 
 .card {
@@ -20,46 +13,8 @@
   justify-content: center;
   align-items: center;
   text-align: center;
-  width: 440px;
-  height: 750px;
-  margin: 12vh 0 0;
-  position: relative;
-  border: 4px solid transparent;
-  border-top-width: 3px;
-  border-bottom-width: 5px;
-  border-radius: 10px;
-  background-color: black;
-}
-
-.card::before {
-  content: "";
-  width: 104%;
-  height: 102.5%;
-  border-radius: 8px;
-  background-image: linear-gradient(
-    var(--rotate),
-    #f5765a 2.16%,
-    #687ff7 100.33%
-  );
-  position: absolute;
-  z-index: -1;
-  top: -1%;
-  left: -2%;
-  animation: spin 2.5s linear infinite;
-}
-
-.card::after {
-  position: absolute;
-  content: "";
-  top: calc(var(--card-height) / 6);
-  left: 0;
-  right: 0;
-  z-index: -1;
-  height: 100%;
-  width: 100%;
-  margin: 0 auto;
-  transform: scale(0.8);
-  filter: blur(calc(var(--card-height) / 6));
+  width: 40%;
+  height: 50rem;
   background-image: linear-gradient(
     var(--rotate),
     #f5765a 2.16%,
@@ -68,6 +23,13 @@
   opacity: 1;
   transition: opacity 0.5s;
   animation: spin 2.5s linear infinite;
+  border-radius: 3rem;
+}
+
+@property --rotate {
+  syntax: "<angle>";
+  initial-value: 132deg;
+  inherits: false;
 }
 
 @keyframes spin {
@@ -79,42 +41,24 @@
   }
 }
 
-.logo,
+
 .kakao_image {
   width: 100%;
 }
-.logo {
-  box-sizing: border-box;
-  height: 100px;
-  margin-bottom: 60px;
-  padding-right: 25px;
-}
+
 .kakao_image {
   margin-bottom: 30px;
   cursor: pointer;
 }
-.form {
-  padding: 0 40px 20px;
-}
 
-.form_down {
-  margin-top: 40px;
-}
-
-.form_control {
-  margin-bottom: 5px;
-  padding-bottom: 20px;
-  position: relative;
-}
 
 .form_control input {
-  border: 1px solid #fff;
   background-color: black;
-  border-radius: 5px;
+  border-radius: 1rem;
   display: block;
-  width: 90%;
+  width: 100%;
   height: 35px;
-  padding: 10px;
+  padding: 1rem;
   font-size: 14px;
   color: #ffffff;
 }
@@ -132,7 +76,8 @@
   font-size: 16px;
   width: 100%;
   border: none;
-  height: 60px;
+  height: 4rem;
+  border-radius: 1rem;
 }
 
 .login_signup {
@@ -140,12 +85,7 @@
   margin-top: 20px;
 }
 
-.login_signup_desc {
-  font-size: 14px;
-  color: #ffffff;
-  margin-top: 80px;
-  display: inline;
-}
+
 
 .login_signup_link {
   color: #67bfff;
@@ -156,4 +96,18 @@
   background-color: transparent;
   cursor: pointer;
   border: none;
+}
+
+.text {
+  font-size: 4rem;
+  font-family: "Monoton", cursive;
+  background: linear-gradient(
+    349deg,
+    rgba(192, 250, 202, 1) 15%,
+    rgba(255, 212, 0, 1) 35%,
+    rgba(233, 115, 141, 1) 55%,
+    rgba(105, 55, 161, 1) 70%
+  );
+  -webkit-background-clip: text;
+  color: transparent;
 }

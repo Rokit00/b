@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styles from "./CommentForm.module.css";
-import { useAuth } from "../AuthContext";
+import { useAuth } from "../../hook/AuthContext";
 
 const OpinionButton = ({
   opinion,
@@ -41,6 +41,32 @@ const CommentForm = ({ onSubmit, postId }) => {
     setNewComment("");
     setSelectedOpinion(null);
   };
+
+  // const handleLogin = (e) => {
+  //   e.preventDefault();
+  //   axios
+  //     .post("http://localhost:8080/members/login", {
+  //       userId: userId.value,
+  //       password: password.value,
+  //     })
+  //     .then((response) => {
+  //       console.log("Login successful:", response.data);
+  //       localStorage.setItem("token", response.data);
+  //       setIsLoggedIn(true);
+
+  //       if (from.pathname !== "/signup") {
+  //         navigate(from.pathname);
+  //       } else {
+  //         navigate("/lists");
+  //       }
+  //     })
+  //     .catch((error) => {
+  //       console.error("Login error:", error);
+  //       setErrorMessage(
+  //         "로그인에 실패했습니다. 아이디와 비밀번호를 확인해주세요."
+  //       );
+  //     });
+  // };
 
   return (
     <div className={styles.inputContainer}>
